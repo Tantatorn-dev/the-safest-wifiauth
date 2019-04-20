@@ -99,10 +99,24 @@ export default [
   },
   {
     name: "Lays",
-    pics: [require("@/assets/Hackathon/rklays1.jpg")]
+    pics: [
+      require("@/assets/Hackathon/rklays1.jpg"),
+      require("@/assets/Hackathon/lays.jpg"),
+      require("@/assets/Hackathon/lays1.jpg"),
+      require("@/assets/Hackathon/lays2.jpg"),
+      require("@/assets/Hackathon/lay3.jpg"),
+      require("@/assets/Hackathon/lay4.jpeg"),
+      require("@/assets/Hackathon/lay5.jpg"),
+      require("@/assets/Hackathon/lay6.jpg"),
+      require("@/assets/Hackathon/lay7.jpg")
+    ]
   },
   {
     name: "Sad Panda",
     pics: [require("@/assets/Hackathon/SadPanda.jpg")]
+  },
+  {
+    name: "Doritos",
+    pics: [require("@/assets/Hackathon/Doritos.jpg")]
   }
 ];

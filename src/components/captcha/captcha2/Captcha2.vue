@@ -49,7 +49,7 @@
         </v-slide-x-transition>
 
         <v-card-actions>
-          <v-btn flat color="orange" @click="random()">ข้าม</v-btn>
+          <v-btn flat color="orange" @click="skip()">ข้าม</v-btn>
           <v-spacer />
           <v-btn color="orange" @click="check()"
             >ต่อไป<v-icon dark right>arrow_forward</v-icon></v-btn
@@ -87,6 +87,10 @@ export default {
     this.random();
   },
   methods: {
+    skip() {
+      this.state = 0;
+      this.random();
+    },
     check() {
       if (!this.select.some(val => val)) {
         this.state = 5;
