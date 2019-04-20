@@ -4,7 +4,10 @@
       <v-card>
         <v-card-title primary-title>
           <v-card class="captcha-head">
-            <h2 class="captcha-head-text">Select all images with Pepsi logo</h2>
+            <h2
+              :v-bind="this.selected_search_key"
+              class="captcha-head-text"
+            >Select all images with {{selected_search_key}}</h2>
           </v-card>
         </v-card-title>
         <v-card-media>
@@ -28,6 +31,7 @@
         </v-card-media>
 
         <v-card-actions>
+          <v-btn icon @click="handleChangeWord"><v-icon>autorenew</v-icon></v-btn>
           <v-spacer></v-spacer>
           <v-btn flat color="primary">Verify</v-btn>
         </v-card-actions>
@@ -37,30 +41,24 @@
 </template>
 
 <script>
+var keys = ["wine", "flower", "cat", "mountain"];
 export default {
   name: "Captcha1",
   data() {
+    let key = keys[Math.floor(Math.random() * keys.length)];
     return {
-      search_keys: [
-        "hamburger",
-        "hotdog",
-        "fruit",
-        "beer",
-        "wine",
-        "bird",
-        "cheese",
-        "tree"
-      ],
+      search_keys:keys,
+      selected_search_key: key,
       url: [
-        "https://source.unsplash.com/random/500x500/?fruit?11",
-        "https://source.unsplash.com/random/500x500/?fruit?2334324",
-        "https://source.unsplash.com/random/500x500/?fruit?4443240",
-        "https://source.unsplash.com/random/500x500/?fruit?23234",
-        "https://source.unsplash.com/random/500x500/?fruit?3233240",
-        "https://source.unsplash.com/random/500x500/?fruit?29953",
-        "https://source.unsplash.com/random/500x500/?fruit?234325",
-        "https://source.unsplash.com/random/500x500/?fruit?22343249",
-        "https://source.unsplash.com/random/500x500/?fruit?554340"
+        "https://source.unsplash.com/random/500x500/?" + key + "?11",
+        "https://source.unsplash.com/random/500x500/?" + key + "?2334324",
+        "https://source.unsplash.com/random/500x500/?" + key + "?4443240",
+        "https://source.unsplash.com/random/500x500/?" + key + "?23234",
+        "https://source.unsplash.com/random/500x500/?" + key + "?3233240",
+        "https://source.unsplash.com/random/500x500/?" + key + "?29953",
+        "https://source.unsplash.com/random/500x500/?" + key + "?234325",
+        "https://source.unsplash.com/random/500x500/?" + key + "?22343249",
+        "https://source.unsplash.com/random/500x500/?" + key + "?554340"
       ]
     };
   },
@@ -70,9 +68,17 @@ export default {
       this.$set(
         this.url,
         index,
-        "https://source.unsplash.com/random/500x500/?fruit?" +
+        "https://source.unsplash.com/random/500x500/?" +
+          this.selected_search_key +
+          "?" +
           new Date().getTime()
       );
+    },
+    handleChangeWord: function(){
+      this.selected_search_key=this.search_keys[Math.floor(Math.random() * this.search_keys.length)];
+      for(let i=0;i<9;i++){
+        this.getImage(i);
+      }
     }
   }
 };
@@ -102,8 +108,7 @@ export default {
   opacity: 0;
 }
 
-.captcha-head-text{
+.captcha-head-text {
   padding: 15px;
 }
-
 </style>
