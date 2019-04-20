@@ -12,8 +12,8 @@
         <v-card-media>
            <v-container align-center justify-center fluid grid-list-xl>
               <v-layout row wrap>
-              <v-flex v-for="i in num" :key="i" xs4>
-                <img  :src="`https://randomuser.me/api/portraits/men/${i + 20}.jpg`" class="image" alt="lorem" width="100%" height="100%">
+              <v-flex v-for="(item,index) in url" :key="index" xs4>
+                <img  @click="getImage(index)" :src="item" class="image" alt="lorem" width="100%" height="100%">
               </v-flex>
               </v-layout>
             </v-container>
@@ -33,6 +33,24 @@ export default {
     name: "Captcha1",
     data(){
       return{
+        search_keys:["hamburger","hotdog","fruit","beer","wine",
+                    "bird","cheese","tree"],
+        url:["https://source.unsplash.com/random/500x500/?fruit?11"
+        ,"https://source.unsplash.com/random/500x500/?fruit?2334324"
+        ,"https://source.unsplash.com/random/500x500/?fruit?4443240"
+        ,"https://source.unsplash.com/random/500x500/?fruit?23234"
+        ,"https://source.unsplash.com/random/500x500/?fruit?3233240"
+        ,"https://source.unsplash.com/random/500x500/?fruit?29953"
+        ,"https://source.unsplash.com/random/500x500/?fruit?234325"
+        ,"https://source.unsplash.com/random/500x500/?fruit?22343249"
+        ,"https://source.unsplash.com/random/500x500/?fruit?554340"
+        ]
+      }
+    },
+    methods:{
+      getImage:function(index){
+        console.log(index)
+        this.$set(this.url,index,"https://source.unsplash.com/random/500x500/?fruit?"+new Date().getTime())
       }
     }
 }
