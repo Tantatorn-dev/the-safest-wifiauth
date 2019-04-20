@@ -13,23 +13,33 @@
 
         <v-slide-x-transition leave-absolute>
           <v-container grid-list-xs fluid :key="num">
-            <v-layout row wrap>
-              <v-flex v-for="n in 16" :key="n" xs3>
-                <v-card flat tile>
-                  <v-img :src="picPart[n - 1]" contain @click="click(n - 1)">
-                    <v-expand-transition>
+            <v-img :src="pic" contain>
+              <table>
+                <tr v-for="i in 4" :key="i">
+                  <td v-for="j in 4" :key="j">
+                    <div
+                      @click="click((i - 1) * 4 + j - 1)"
+                      style="height: 100%; width: 100%;"
+                    >
                       <div
-                        v-if="select[n - 1]"
-                        class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-4 white--text"
-                        style="height: 100%;"
+                        v-if="select[(i - 1) * 4 + j - 1]"
+                        class="d-flex transition-fast-in-fast-out v-card--reveal display-4"
+                        :style="{
+                          height: '25%',
+                          width: '25%',
+                          top: (i - 1) * 25 + '%',
+                          left: (j - 1) * 25 + '%'
+                        }"
                       >
-                        <v-icon dark right class="ma-0">check_circle</v-icon>
+                        <v-icon right class="ma-0" style="color: black;"
+                          >check_circle</v-icon
+                        >
                       </div>
-                    </v-expand-transition>
-                  </v-img>
-                </v-card>
-              </v-flex>
-            </v-layout>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </v-img>
           </v-container>
         </v-slide-x-transition>
 
@@ -49,7 +59,7 @@ export default {
   data() {
     return {
       name: null,
-      pic: null,
+      pic: "",
       picPart: [],
       select: [],
       num: 0,
@@ -57,11 +67,11 @@ export default {
     };
   },
   mounted() {
+    for (var i = 0; i < 16; i++) this.select.push(false);
     this.random();
   },
   methods: {
     random() {
-      this.num = 1;
       let all = [];
       picslist.forEach(namePic => {
         namePic.pics.forEach(pic => {
@@ -77,45 +87,10 @@ export default {
       this.name = all[randIndex].name;
       this.pic = all[randIndex].pic;
 
-      var canvas1 = document.createElement("canvas");
-      var ctx = canvas1.getContext("2d");
+      for (var i = 0; i < this.select.length; i++) this.select[i] = false;
 
-      var canvas2 = document.createElement("canvas");
-      var ctx2 = canvas2.getContext("2d");
-
-      var side = 4;
-
-      var img = new Image();
-      img.onload = () => {
-        canvas1.width = img.width;
-        canvas1.height = img.height;
-        ctx.drawImage(img, 0, 0);
-
-        canvas2.width = img.width / side;
-        canvas2.height = img.height / side;
-
-        var out = [];
-        for (var i = 0; i < side * side; i++) {
-          var cropImg = ctx.getImageData(
-            canvas2.width * (i % side),
-            canvas2.height * Math.floor(i / side),
-            canvas2.width,
-            canvas2.height
-          );
-          ctx2.putImageData(cropImg, 0, 0);
-          out.push(canvas2.toDataURL("image/png"));
-        }
-
-        this.picPart = out;
-
-        this.select.forEach((val, index) => {
-          if (val) this.click(index);
-        });
-
-        this.num++;
-        this.$vuetify.goTo(0);
-      };
-      img.src = this.pic;
+      this.num++;
+      this.$vuetify.goTo(0);
     },
     click(i) {
       this.$set(this.select, i, !this.select[i]);
@@ -129,11 +104,22 @@ export default {
   align-items: center;
   bottom: 0;
   justify-content: center;
-  opacity: 0.7;
   position: absolute;
   width: 100%;
+  background-color: rgb(255, 255, 255, 0.4);
 }
-.bottom-gradient {
-  background-color: rgba(0, 0, 0, 0.3);
+table {
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  border-style: hidden;
+}
+th,
+tr,
+td {
+  width: 25%;
+  border-style: solid;
+  border-color: white;
 }
 </style>
