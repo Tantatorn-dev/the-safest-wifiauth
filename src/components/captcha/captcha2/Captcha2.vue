@@ -6,7 +6,7 @@
           <div style="width: 100%;">
             <h3 class="headline mb-0">เลือกส่วนที่มี {{ name }}</h3>
             <v-alert :value="num > 1" type="error">
-              คุณเลือกไม่ครบ
+              คุณเลือกไม่ครบ กรุณาลองใหม่
             </v-alert>
           </div>
         </v-card-title>
@@ -61,6 +61,7 @@ export default {
   },
   methods: {
     random() {
+      this.num = 1;
       let all = [];
       picslist.forEach(namePic => {
         namePic.pics.forEach(pic => {
@@ -112,6 +113,7 @@ export default {
         });
 
         this.num++;
+        this.$vuetify.goTo(0);
       };
       img.src = this.pic;
     },
