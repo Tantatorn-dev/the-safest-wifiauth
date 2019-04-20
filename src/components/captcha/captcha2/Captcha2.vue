@@ -5,17 +5,21 @@
         <v-card-title primary-title>
           <div style="width: 100%;">
             <h3 class="headline mb-0">เลือกส่วนที่มี {{ name }}</h3>
-            <v-alert :value="state == 2" type="error" class="pa-2">
+            <v-alert
+              :value="state >= 2 && state != 10"
+              type="error"
+              class="pa-2"
+            >
               คุณเลือกคำตอบที่ถูกต้องไม่ครบ กรุณาลองใหม่
             </v-alert>
-            <v-alert :value="state == 5" type="error" class="pa-2">
+            <v-alert :value="state == 10" type="error" class="pa-2">
               กรุณาเลือกอย่างน้อยหนึ่งช่อง
             </v-alert>
           </div>
         </v-card-title>
 
         <v-slide-x-transition leave-absolute>
-          <v-container grid-list-xs fluid :key="num">
+          <v-container grid-list-xs fluid :key="state">
             <v-img :src="pic" contain>
               <table>
                 <tr v-for="i in 4" :key="i">
@@ -57,6 +61,10 @@
         </v-card-actions>
       </v-card>
     </v-flex>
+
+    <!-- <audio autoplay loop>
+      <source src="@/assets/Hackathon/ElevatorMusic.mp3" type="audio/mpeg" />
+    </audio> -->
   </v-layout>
 </template>
 
@@ -93,7 +101,7 @@ export default {
     },
     check() {
       if (!this.select.some(val => val)) {
-        this.state = 5;
+        this.state = 10;
         this.$vuetify.goTo(0);
       } else this.random();
     },
@@ -109,7 +117,7 @@ export default {
       for (var i = 0; i < this.select.length; i++) this.select[i] = false;
 
       this.state++;
-      if (this.state > 2) this.state = 2;
+      if (this.state > 9) this.state = 2;
       this.$vuetify.goTo(0);
     },
     click(i) {

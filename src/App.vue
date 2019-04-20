@@ -18,6 +18,21 @@
     <v-content>
       <Captcha2></Captcha2>
     </v-content>
+
+    <v-dialog v-model="dialog" persistent>
+      <v-card>
+        <video id="myVideo" width="100%" style="max-height: 80vh;">
+          <source src="@/assets/Hackathon/Sekiro-op.mp4" type="video/mp4" />
+        </video>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <p v-if="time > 0">กรุณารอ {{ time }}</p>
+          <v-btn v-if="time < 0" color="green darken-1" flat @click="close()"
+            >ข้าม</v-btn
+          >
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -30,8 +45,25 @@ export default {
   },
   data() {
     return {
-      //
+      dialog: true,
+      time: 10
     };
+  },
+  mounted() {
+    var vid = document.getElementById("myVideo");
+    vid.loop = true;
+    vid.autoplay = true;
+    vid.ontimeupdate = () => {
+      this.time = Math.round(10 - vid.currentTime);
+    };
+    vid.load();
+  },
+  methods: {
+    close() {
+      var vid = document.getElementById("myVideo");
+      vid.pause();
+      this.dialog = false;
+    }
   }
 };
 </script>
