@@ -2,7 +2,6 @@
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
-
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">Captcha</h3>
@@ -20,7 +19,6 @@
 
 <script>
 export default {
-    name: "Captcha1"
-}
+  name: "Captcha1"
+};
 </script>
-

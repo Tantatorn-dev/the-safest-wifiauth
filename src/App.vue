@@ -16,22 +16,22 @@
     </v-toolbar>
 
     <v-content>
-      <Captcha1></Captcha1>
+      <Captcha2></Captcha2>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Captcha1 from './components/captcha/captcha1/Captcha1'
+import Captcha2 from "./components/captcha/captcha2/Captcha2";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Captcha1
+    Captcha2
   },
-  data () {
+  data() {
     return {
       //
-    }
+    };
   }
-}
+};
 </script>
