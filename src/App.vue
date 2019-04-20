@@ -67,10 +67,16 @@ export default {
   },
   mounted() {
     var vid = document.getElementById("myVideo");
-    vid.loop = true;
+    // vid.loop = true;
     vid.autoplay = true;
     vid.ontimeupdate = () => {
       this.time = Math.round(10 - vid.currentTime);
+    };
+
+    vid.onended = () => {
+      var index = Math.floor(Math.random() * vids.length);
+      vid.src = vids[index];
+      vid.load();
     };
 
     var index = Math.floor(Math.random() * vids.length);
