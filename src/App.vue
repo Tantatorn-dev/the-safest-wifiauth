@@ -41,7 +41,17 @@ var vids = [
   require("@/assets/Hackathon/Sekiro-op.mp4"),
   require("@/assets/Hackathon/TSOVER.mp4"),
   require("@/assets/Hackathon/Ricardo-milos-pillar-men-theme.mp4"),
-  require("@/assets/Hackathon/Shopee.mp4")
+  require("@/assets/Hackathon/Shopee.mp4"),
+  require("@/assets/Hackathon/daikey.mp4"),
+  require("@/assets/Hackathon/Euro.mp4"),
+  require("@/assets/Hackathon/Frog.mp4"),
+  require("@/assets/Hackathon/jo-ranger.mp4"),
+  require("@/assets/Hackathon/kaiyang.mp4"),
+  require("@/assets/Hackathon/kaokae.mp4"),
+  require("@/assets/Hackathon/Luxmix.mp4"),
+  require("@/assets/Hackathon/pukking.mp4"),
+  require("@/assets/Hackathon/puthai.mp4"),
+  require("@/assets/Hackathon/TeemoRemix.mp4")
 ];
 
 export default {
