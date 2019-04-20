@@ -21,12 +21,10 @@
 
     <v-dialog v-model="dialog" persistent>
       <v-card>
-        <video id="myVideo" width="100%" style="max-height: 80vh;">
-          <source src="@/assets/Hackathon/Sekiro-op.mp4" type="video/mp4" />
-        </video>
+        <video id="myVideo" width="100%" style="max-height: 80vh;"></video>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <p v-if="time > 0">กรุณารอ {{ time }}</p>
+          <p v-if="time >= 0">กรุณารอ {{ time }}</p>
           <v-btn v-if="time < 0" color="green darken-1" flat @click="close()"
             >ข้าม</v-btn
           >
@@ -38,6 +36,14 @@
 
 <script>
 import Captcha2 from "./components/captcha/captcha2/Captcha2";
+
+var vids = [
+  require("@/assets/Hackathon/Sekiro-op.mp4"),
+  require("@/assets/Hackathon/TSOVER.mp4"),
+  require("@/assets/Hackathon/Ricardo-milos-pillar-men-theme.mp4"),
+  require("@/assets/Hackathon/Shopee.mp4")
+];
+
 export default {
   name: "App",
   components: {
@@ -56,6 +62,9 @@ export default {
     vid.ontimeupdate = () => {
       this.time = Math.round(10 - vid.currentTime);
     };
+
+    var index = Math.floor(Math.random() * vids.length);
+    vid.src = vids[index];
     vid.load();
   },
   methods: {
