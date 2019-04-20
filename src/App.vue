@@ -85,6 +85,10 @@ export default {
 
     var index = Math.floor(Math.random() * vids.length);
     vid.src = vids[index];
+
+    vid.oncanplay = function() {
+      vid.play();
+    };
     vid.load();
   },
   methods: {
