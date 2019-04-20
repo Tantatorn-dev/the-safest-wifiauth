@@ -5,8 +5,11 @@
         <v-card-title primary-title>
           <div style="width: 100%;">
             <h3 class="headline mb-0">เลือกส่วนที่มี {{ name }}</h3>
-            <v-alert :value="num > 1" type="error">
-              คุณเลือกไม่ครบ กรุณาลองใหม่
+            <v-alert :value="state == 2" type="error" class="pa-2">
+              คุณเลือกคำตอบที่ถูกต้องไม่ครบ กรุณาลองใหม่
+            </v-alert>
+            <v-alert :value="state == 5" type="error" class="pa-2">
+              กรุณาเลือกอย่างน้อยหนึ่งช่อง
             </v-alert>
           </div>
         </v-card-title>
@@ -21,20 +24,22 @@
                       @click="click((i - 1) * 4 + j - 1)"
                       style="height: 100%; width: 100%;"
                     >
-                      <div
-                        v-if="select[(i - 1) * 4 + j - 1]"
-                        class="d-flex transition-fast-in-fast-out v-card--reveal display-4"
-                        :style="{
-                          height: '25%',
-                          width: '25%',
-                          top: (i - 1) * 25 + '%',
-                          left: (j - 1) * 25 + '%'
-                        }"
-                      >
-                        <v-icon right class="ma-0" style="color: black;"
-                          >check_circle</v-icon
+                      <v-fade-transition>
+                        <div
+                          v-if="select[(i - 1) * 4 + j - 1]"
+                          class="d-flex transition-fast-in-fast-out v-card--reveal display-4"
+                          :style="{
+                            height: '25%',
+                            width: '25%',
+                            top: (i - 1) * 25 + '%',
+                            left: (j - 1) * 25 + '%'
+                          }"
                         >
-                      </div>
+                          <v-icon right class="ma-0" style="color: black;"
+                            >check_circle</v-icon
+                          >
+                        </div>
+                      </v-fade-transition>
                     </div>
                   </td>
                 </tr>
@@ -44,8 +49,11 @@
         </v-slide-x-transition>
 
         <v-card-actions>
-          <v-btn flat color="orange" @click="random()">Continue</v-btn>
-          <v-btn flat color="orange">Explore</v-btn>
+          <v-btn flat color="orange" @click="random()">ข้าม</v-btn>
+          <v-spacer />
+          <v-btn color="orange" @click="check()"
+            >ต่อไป<v-icon dark right>arrow_forward</v-icon></v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -54,6 +62,14 @@
 
 <script>
 import picslist from "./picslist";
+
+var all = [];
+picslist.forEach(namePic => {
+  namePic.pics.forEach(pic => {
+    all.push({ name: namePic.name, pic: pic });
+  });
+});
+
 export default {
   name: "Captcha2",
   data() {
@@ -62,7 +78,7 @@ export default {
       pic: "",
       picPart: [],
       select: [],
-      num: 0,
+      state: 0,
       lastIndex: null
     };
   },
@@ -71,14 +87,13 @@ export default {
     this.random();
   },
   methods: {
+    check() {
+      if (!this.select.some(val => val)) {
+        this.state = 5;
+        this.$vuetify.goTo(0);
+      } else this.random();
+    },
     random() {
-      let all = [];
-      picslist.forEach(namePic => {
-        namePic.pics.forEach(pic => {
-          all.push({ name: namePic.name, pic: pic });
-        });
-      });
-
       var randIndex = this.lastIndex;
       while (randIndex == this.lastIndex)
         randIndex = Math.floor(Math.random() * all.length);
@@ -89,7 +104,8 @@ export default {
 
       for (var i = 0; i < this.select.length; i++) this.select[i] = false;
 
-      this.num++;
+      this.state++;
+      if (this.state > 2) this.state = 2;
       this.$vuetify.goTo(0);
     },
     click(i) {
@@ -106,7 +122,7 @@ export default {
   justify-content: center;
   position: absolute;
   width: 100%;
-  background-color: rgb(255, 255, 255, 0.4);
+  background-color: rgb(255, 255, 255, 0.6);
 }
 table {
   table-layout: fixed;
