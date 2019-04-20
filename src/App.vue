@@ -16,18 +16,17 @@
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
+      <Captcha1></Captcha1>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import Captcha1 from './components/captcha/captcha1/Captcha1'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Captcha1
   },
   data () {
     return {
