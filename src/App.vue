@@ -1,24 +1,9 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
     <v-content>
-      <Captcha2></Captcha2>
+      <Login></Login>
     </v-content>
-
+    <!--
     <v-dialog v-model="dialog" persistent>
       <v-card>
         <video id="myVideo" width="100%" style="max-height: 80vh;"></video>
@@ -30,12 +15,14 @@
           >
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog>-->
   </v-app>
 </template>
 
 <script>
+import Captcha1 from "./components/captcha/captcha1/Captcha1";
 import Captcha2 from "./components/captcha/captcha2/Captcha2";
+import Login from "./components/login/Login";
 
 var vids = [
   require("@/assets/Hackathon/Sekiro-op.mp4"),
@@ -57,7 +44,9 @@ var vids = [
 export default {
   name: "App",
   components: {
-    Captcha2
+    Captcha1,
+    Captcha2,
+    Login
   },
   data() {
     return {
