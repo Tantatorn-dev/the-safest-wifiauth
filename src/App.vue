@@ -3,7 +3,7 @@
     <v-content>
       <Login></Login>
     </v-content>
-    <!--
+
     <v-dialog v-model="dialog" persistent>
       <v-card>
         <video id="myVideo" width="100%" style="max-height: 80vh;"></video>
@@ -15,7 +15,7 @@
           >
         </v-card-actions>
       </v-card>
-    </v-dialog>-->
+    </v-dialog>
   </v-app>
 </template>
 
