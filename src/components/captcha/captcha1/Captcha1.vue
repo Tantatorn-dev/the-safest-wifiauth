@@ -4,16 +4,15 @@
       <v-card>
         <v-card-title primary-title>
           <v-card class="captcha-head">
-            <h2
-              :v-bind="this.selected_search_key"
-              class="captcha-head-text"
-            >Select all images with {{selected_search_key}}</h2>
+            <h2 :v-bind="this.selected_search_key" class="captcha-head-text">
+              Select all images with {{ selected_search_key }}
+            </h2>
           </v-card>
         </v-card-title>
         <v-card-media>
           <v-container align-center justify-center fluid grid-list-xl>
             <v-layout row wrap>
-              <v-flex v-for="(item,index) in url" :key="index" xs4>
+              <v-flex v-for="(item, index) in url" :key="index" xs4>
                 <transition name="fade">
                   <img
                     @click="getImage(index)"
@@ -23,7 +22,7 @@
                     alt="loading"
                     width="100%"
                     height="100%"
-                  >
+                  />
                 </transition>
               </v-flex>
             </v-layout>
@@ -31,7 +30,9 @@
         </v-card-media>
 
         <v-card-actions>
-          <v-btn icon @click="handleChangeWord"><v-icon>autorenew</v-icon></v-btn>
+          <v-btn icon @click="handleChangeWord"
+            ><v-icon>autorenew</v-icon></v-btn
+          >
           <v-spacer></v-spacer>
           <v-btn flat color="primary">Verify</v-btn>
         </v-card-actions>
@@ -47,7 +48,7 @@ export default {
   data() {
     let key = keys[Math.floor(Math.random() * keys.length)];
     return {
-      search_keys:keys,
+      search_keys: keys,
       selected_search_key: key,
       url: [
         "https://source.unsplash.com/random/500x500/?" + key + "?11",
@@ -64,7 +65,6 @@ export default {
   },
   methods: {
     getImage: function(index) {
-      console.log(index);
       this.$set(
         this.url,
         index,
@@ -74,9 +74,11 @@ export default {
           new Date().getTime()
       );
     },
-    handleChangeWord: function(){
-      this.selected_search_key=this.search_keys[Math.floor(Math.random() * this.search_keys.length)];
-      for(let i=0;i<9;i++){
+    handleChangeWord: function() {
+      this.selected_search_key = this.search_keys[
+        Math.floor(Math.random() * this.search_keys.length)
+      ];
+      for (let i = 0; i < 9; i++) {
         this.getImage(i);
       }
     }

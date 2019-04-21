@@ -18,7 +18,7 @@
     <v-content>
       <Login></Login>
     </v-content>
-<!--
+    <!--
     <v-dialog v-model="dialog" persistent>
       <v-card>
         <video id="myVideo" width="100%" style="max-height: 80vh;"></video>
@@ -37,7 +37,7 @@
 <script>
 import Captcha1 from "./components/captcha/captcha1/Captcha1";
 import Captcha2 from "./components/captcha/captcha2/Captcha2";
-import Login from "./components/login/Login"
+import Login from "./components/login/Login";
 
 var vids = [
   require("@/assets/Hackathon/Sekiro-op.mp4"),

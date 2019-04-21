@@ -10,7 +10,13 @@
                   <v-toolbar-title>Login form</v-toolbar-title>
                   <v-spacer></v-spacer>
                   <v-tooltip bottom>
-                    <v-btn icon large :href="source" target="_blank" slot="activator">
+                    <v-btn
+                      icon
+                      large
+                      :href="source"
+                      target="_blank"
+                      slot="activator"
+                    >
                       <v-icon large>code</v-icon>
                     </v-btn>
                     <span>Source</span>
@@ -18,7 +24,12 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
-                    <v-text-field prepend-icon="person" name="login" label="Login" type="text"></v-text-field>
+                    <v-text-field
+                      prepend-icon="person"
+                      name="login"
+                      label="Login"
+                      type="text"
+                    ></v-text-field>
                     <v-text-field
                       prepend-icon="lock"
                       name="password"
@@ -37,10 +48,10 @@
                       hide-overlay
                       transition="dialog-bottom-transition"
                     >
-                    <template v-slot:activator="{ on }">
-                      <v-btn color="primary" v-on="on">Login</v-btn>
-                    </template>
-                    <Captcha1></Captcha1>
+                      <template v-slot:activator="{ on }">
+                        <v-btn color="primary" v-on="on">Login</v-btn>
+                      </template>
+                      <Captcha1></Captcha1>
                     </v-dialog>
                   </v-layout>
                 </v-card-actions>
@@ -64,7 +75,7 @@ export default {
   },
   data() {
     return {
-      dialog:false
+      dialog: false
     };
   }
 };
