@@ -5,7 +5,7 @@
         <v-card-title primary-title>
           <v-card class="captcha-head">
             <h2 :v-bind="this.selected_search_key" class="captcha-head-text">
-              Select all images with {{ selected_search_key }}
+              คลิกทุกรูปที่มี {{ selected_search_key }} จนกว่าจะหมด
             </h2>
           </v-card>
         </v-card-title>

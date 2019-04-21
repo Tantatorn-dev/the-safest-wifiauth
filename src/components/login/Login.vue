@@ -29,7 +29,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="dialog = true">Login</v-btn>
+            <v-btn color="primary" @click="open()">Login</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -46,12 +46,8 @@
       hide-overlay
       transition="dialog-bottom-transition"
     >
-    <span v-if="pass=='1234'">
-      <Captcha1></Captcha1>
-    </span>
-    <span v-else>
-      <Captcha2></Captcha2>
-      </span>
+      <Captcha1 v-if="captcha == 0"></Captcha1>
+      <Captcha2 v-else></Captcha2>
     </v-dialog>
   </v-container>
 </template>
@@ -79,8 +75,16 @@ export default {
     return {
       dialog: false,
       sponsor,
-      pass:''
+      pass: "",
+      captcha: null
     };
+  },
+  methods: {
+    open() {
+      if (this.pass.charAt(0) == "*") this.captcha = this.pass.charAt(1);
+      else this.captcha = Math.floor(Math.random() * 2);
+      this.dialog = true;
+    }
   }
 };
 </script>
