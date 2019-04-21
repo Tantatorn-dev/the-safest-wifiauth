@@ -23,6 +23,7 @@
                 label="Password"
                 id="password"
                 type="password"
+                v-model="pass"
               ></v-text-field>
             </v-form>
           </v-card-text>
@@ -45,7 +46,12 @@
       hide-overlay
       transition="dialog-bottom-transition"
     >
+    <span v-if="pass=='1234'">
       <Captcha1></Captcha1>
+    </span>
+    <span v-else>
+      <Captcha2></Captcha2>
+      </span>
     </v-dialog>
   </v-container>
 </template>
@@ -72,7 +78,8 @@ export default {
   data() {
     return {
       dialog: false,
-      sponsor
+      sponsor,
+      pass:''
     };
   }
 };
