@@ -30,7 +30,19 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary">Login</v-btn>
+                  <v-layout row justify-center>
+                    <v-dialog
+                      v-model="dialog"
+                      fullscreen
+                      hide-overlay
+                      transition="dialog-bottom-transition"
+                    >
+                    <template v-slot:activator="{ on }">
+                      <v-btn color="primary" v-on="on">Login</v-btn>
+                    </template>
+                    <Captcha1></Captcha1>
+                    </v-dialog>
+                  </v-layout>
                 </v-card-actions>
               </v-card>
             </v-flex>
@@ -42,7 +54,18 @@
 </template>
 
 <script>
+import Captcha1 from "../captcha/captcha1/Captcha1";
+import Captcha2 from "../captcha/captcha2/Captcha2";
 export default {
-    name: "Login"
-}
+  name: "Login",
+  components: {
+    Captcha1,
+    Captcha2
+  },
+  data() {
+    return {
+      dialog:false
+    };
+  }
+};
 </script>
