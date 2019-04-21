@@ -61,10 +61,6 @@
         </v-card-actions>
       </v-card>
     </v-flex>
-
-    <!-- <audio autoplay loop>
-      <source src="@/assets/Hackathon/ElevatorMusic.mp3" type="audio/mpeg" />
-    </audio> -->
   </v-layout>
 </template>
 

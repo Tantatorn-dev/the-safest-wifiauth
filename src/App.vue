@@ -8,6 +8,9 @@
       <v-card>
         <video id="myVideo" width="100%" style="max-height: 80vh;"></video>
         <v-card-actions>
+          <v-btn flat @click="play()">
+            เล่นวิดีโอ
+          </v-btn>
           <v-spacer></v-spacer>
           <p v-if="time >= 0">กรุณารอ {{ time }}</p>
           <v-btn v-if="time < 0" color="green darken-1" flat @click="close()"
@@ -16,12 +19,14 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <audio id="myAudio" loop>
+      <source src="@/assets/Hackathon/ElevatorMusic.mp3" type="audio/mpeg" />
+    </audio>
   </v-app>
 </template>
 
 <script>
-import Captcha1 from "./components/captcha/captcha1/Captcha1";
-import Captcha2 from "./components/captcha/captcha2/Captcha2";
 import Login from "./components/login/Login";
 
 var vids = [
@@ -44,8 +49,6 @@ var vids = [
 export default {
   name: "App",
   components: {
-    Captcha1,
-    Captcha2,
     Login
   },
   data() {
@@ -81,6 +84,13 @@ export default {
       var vid = document.getElementById("myVideo");
       vid.pause();
       this.dialog = false;
+
+      var aud = document.getElementById("myAudio");
+      aud.play();
+    },
+    play() {
+      var vid = document.getElementById("myVideo");
+      vid.play();
     }
   }
 };

@@ -46,12 +46,8 @@
       hide-overlay
       transition="dialog-bottom-transition"
     >
-    <span v-if="pass=='1234'">
-      <Captcha1></Captcha1>
-    </span>
-    <span v-else>
-      <Captcha2></Captcha2>
-      </span>
+      <Captcha1 v-if="pass == '1234'"></Captcha1>
+      <Captcha2 v-else></Captcha2>
     </v-dialog>
   </v-container>
 </template>
@@ -79,7 +75,7 @@ export default {
     return {
       dialog: false,
       sponsor,
-      pass:''
+      pass: ""
     };
   }
 };
