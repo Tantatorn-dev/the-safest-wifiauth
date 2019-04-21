@@ -42,7 +42,7 @@
 </template>
 
 <script>
-var keys = ["wine", "flower", "cat", "mountain"];
+var keys = ["flower", "cat", "mountain","dog","tree","sea"];
 export default {
   name: "Captcha1",
   data() {
