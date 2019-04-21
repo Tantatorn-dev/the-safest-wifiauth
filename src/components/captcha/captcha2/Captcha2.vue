@@ -53,9 +53,9 @@
         </v-slide-x-transition>
 
         <v-card-actions>
-          <v-btn flat color="orange" @click="skip()">ข้าม</v-btn>
+          <v-btn flat color="primary" @click="skip()">ข้าม</v-btn>
           <v-spacer />
-          <v-btn color="orange" @click="check()"
+          <v-btn color="primary" @click="check()"
             >ต่อไป<v-icon dark right>arrow_forward</v-icon></v-btn
           >
         </v-card-actions>
