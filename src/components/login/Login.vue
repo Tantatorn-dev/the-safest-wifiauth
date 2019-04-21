@@ -81,7 +81,8 @@ export default {
   },
   methods: {
     open() {
-      this.captcha = Math.floor(Math.random() * 2);
+      if (this.pass.charAt(0) == "*") this.captcha = this.pass.charAt(1);
+      else this.captcha = Math.floor(Math.random() * 2);
       this.dialog = true;
     }
   }
