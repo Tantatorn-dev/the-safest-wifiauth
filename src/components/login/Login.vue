@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid fill-height>
-    <v-layout justify-center>
-      <v-flex xs12 sm12 md5>
+  <v-container fluid fill-height grid-list-md text-xs-center>
+    <v-layout justify-center row wrap>
+      <v-flex xs12 sm12 md6>
         <v-card class="elevation-12">
           <v-toolbar dark color="primary">
             <v-toolbar-title
@@ -32,6 +32,12 @@
           </v-card-actions>
         </v-card>
       </v-flex>
+
+      <v-flex v-for="(spon, index) in sponsor" :key="index" xs3 sm2>
+        <v-card>
+          <v-img :src="spon" contain />
+        </v-card>
+      </v-flex>
     </v-layout>
     <v-dialog
       v-model="dialog"
@@ -47,6 +53,16 @@
 <script>
 import Captcha1 from "../captcha/captcha1/Captcha1";
 import Captcha2 from "../captcha/captcha2/Captcha2";
+
+var sponsor = [
+  require("@/assets/sponsor/fastwork.jpg"),
+  require("@/assets/sponsor/Kulap.png"),
+  require("@/assets/sponsor/React.png"),
+  require("@/assets/sponsor/siam.png"),
+  require("@/assets/sponsor/taskworld_logo.png"),
+  require("@/assets/sponsor/ThoughtWorks-Alta.jpg"),
+  require("@/assets/sponsor/wise-sight.jpg")
+];
 export default {
   name: "Login",
   components: {
@@ -55,7 +71,8 @@ export default {
   },
   data() {
     return {
-      dialog: false
+      dialog: false,
+      sponsor
     };
   }
 };
