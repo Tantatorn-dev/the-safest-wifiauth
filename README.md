@@ -1,4 +1,9 @@
 # the-safest-wifiauth
+a project for the Stupid Hackathon Thailand 3th 
+this is the most safest wifi authentication system just for fun. lol
+
+## demo
+https://the-swa-demo.netlify.com/
 
 ## Project setup
 ```
